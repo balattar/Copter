@@ -24,23 +24,21 @@ include(CMakeParseArguments)
 include(APMOption)
 
 # options
-apm_option("APM_PROGRAMMING_PORT" TYPE "STRING"
+apm_option("APM_PROGRAMMING_PORT" TYPE STRING
     DESCRIPTION "Programming upload port?"
     DEFAULT "/dev/ttyUSB0")
 
-apm_option("APM_BOARD" TYPE "COMBO"
+apm_option("APM_BOARD" TYPE STRING
     DESCRIPTION "ArduPilotMega board?" 
     DEFAULT "mega2560"
     OPTIONS "mega" "mega2560")
 
-apm_option("APM_PROJECT" TYPE "COMBO"
+apm_option("APM_PROJECT" TYPE STRING
     DESCRIPTION "ArduPilotMega project to build?"
     DEFAULT "ArduPlane"
     OPTIONS "ArduPlane" "ArduCopter")
 
-if(APM_PROJECT STREQUAL "ArduPlane")
-    include(cmake/options-ArduPlane.cmake)
-endif()
+include(cmake/options-ArduPlane.cmake)
 
 # modify flags from default toolchain flags
 set(APM_OPT_FLAGS "-Wformat -Wall -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wformat=2")
